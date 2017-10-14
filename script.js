@@ -4,8 +4,7 @@ document.getElementById("searchDomDomainInput").addEventListener("keyup", checki
 var avext = ["com", "co.id", "com.my", "my"]
 var avextlengthcount = 0
 
-var inputwidth = document.getElementById("searchDomDomainInput").offsetWidth
-console.log(inputwidth)
+
 
 function avextlength (){
 	for (i=0;i<avext.length;i++){
@@ -22,21 +21,23 @@ console.log("avextlengthcount = " + avextlengthcount)
 function checkinput(){
 	var	inputdata = document.getElementById("searchDomDomainInput").value
 	var	inputdataarray = inputdata.split(".")
-	var newli = document.createElement("li")
+
 	var theul = document.getElementById("extlist")
 	console.log("run")
+	document.getElementById("extlist").innerHTML = " "
 	for(i=0;i<avext.length;i++){
-		console.log("loop" + [i])
-		if(inputdataarray.length > 3){
+		console.log("loop" + [i+1])
+		
+		
+		if(inputdataarray.length > 3 || inputdataarray.length < 2 ){
 			
-			document.getElementById("output001").innerHTML = "invalid input extension"
+			document.getElementById("output001").innerHTML = "invalid input format"
 		}
 		else if(inputdataarray[1].charAt(0) == avext[i].charAt(0)){
+			var newli = document.createElement("li")
 			document.getElementById("output001").innerHTML = " "
-			//theul.removeChild(theul.lastChild)
 			theul.appendChild(newli).setAttribute("class","ulli")
 			theul.lastChild.innerHTML = avext[i]
-			
 			console.log("avext[" + i + "].charAt(0) =" + avext[i].charAt(0))
 			console.log("avext[" + i + "] =" + avext[i])
 		
@@ -44,6 +45,16 @@ function checkinput(){
 	}
 
 
-	//if(inputdataarray[1].charAt(0)
 }
 
+/*
+
+$(function () {
+	$("#searchDomDomainInput").keyup(function(){
+		$( "#searchDomDomainInput" ).autocomplete({
+		source: avext
+		});
+	} );
+})
+
+*/
